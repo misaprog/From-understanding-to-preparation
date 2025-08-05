@@ -106,3 +106,17 @@ print(sys.version)
 ```
 
 ---
+
+## 必要なライブラリのインポート
+
+このプロジェクトでは、以下の Python ライブラリを使用します。
+
+```python
+import pandas as pd  # pandas: データ解析・操作用のライブラリ（DataFrameなどを使う）
+pd.set_option('display.max_columns', None)  # 表示される列数の上限を解除（すべての列を表示）
+
+import numpy as np  # numpy: 数値計算ライブラリ（配列処理、数学関数などに利用）
+
+import re  # re: 正規表現を使った文字列検索や置換などに使用
+
+```
