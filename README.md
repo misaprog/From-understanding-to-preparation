@@ -194,3 +194,29 @@ print("Data read into dataframe!")
 #### これは、正規表現を用いて材料名の中にキーワードが含まれるかをチェックする操作です。
 #### このような探索は、特定の料理に特徴的な食材を確認する際に有用です。
 ---
+['brown_rice', 'licorice', 'rice']
+「rice」を含む材料が以下の3つ見つかっています：
+
+brown_rice（玄米）
+
+licorice（リコリス：英単語に"rice"が含まれているだけ）
+
+rice（白米）
+
+※ licorice は rice とは関係ないので、「rice」という単語の部分一致による**副作用（ノイズ）**ですね。
+これは正規表現で .*(rice).* としているため、「rice」がどこに現れてもヒットしてしまうためです。
+
+['wasabi']
+「wasabi」にぴったり一致する列が1つ見つかっています。
+
+['soy_sauce', 'soybean', 'soybean_oil']
+「soy」を含む材料が3つ見つかっています：
+
+soy_sauce（醤油）
+
+soybean（大豆）
+
+soybean_oil（大豆油）
+
+→ これは非常に有効な特徴量になりそうですね。
+---
