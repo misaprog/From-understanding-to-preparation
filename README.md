@@ -95,3 +95,14 @@ python -V は、Pythonのバージョン情報を表示する標準的なコマ�
 ローカル環境だけでなく、クラウド上のJupyter環境でも使えます。
 
 ---
+
+Pythonバージョンを確認する他の方法として、Pythonコードで直接取得することもできます：
+
+```
+
+import sys
+print(sys.version)
+
+```
+
+---
