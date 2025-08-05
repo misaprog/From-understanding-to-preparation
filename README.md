@@ -147,4 +147,23 @@ recipes = pd.read_csv("https://cf-courses-data.s3.us.cloud-object-storage.appdom
 
 print("Data read into dataframe!")  # 読み込みには約30秒かかります
 ```
+ローカル環境で実行する場合は、あらかじめファイルをダウンロードして同じフォルダに置き、コメントアウトを外して実行してください。
 
+```
+
+# recipes = pd.read_csv("recipes.csv")
+
+```
+## データの読み込み（ローカル環境 / 通常のJupyter Notebook向け）
+
+以下のコードは、IBMのクラウドストレージからCSVデータを `pandas` で直接取得し、データフレームに読み込む方法です。
+
+```python
+import pandas as pd
+
+url = "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-DS0103EN-SkillsNetwork/labs/Module%202/recipes.csv"
+
+recipes = pd.read_csv(url)
+
+print("Data read into dataframe!")
+```
