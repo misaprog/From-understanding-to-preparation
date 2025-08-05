@@ -188,5 +188,5 @@ print("Data read into dataframe!")
 ---
 このコードは正規表現（re.compile(...)）を用いて、レシピデータに含まれる材料（列名）の中から、「rice」「wasabi」「soy」を名前に含む食材を検索しています。材料データが数百種類ある中から、関係のある食材のみをピックアップするための方法です。
 
-これは 特徴量の選定（feature selection） や、データ探索（exploratory analysis） の一環として行われます。
+#### これは 特徴量の選定（feature selection） や、データ探索（exploratory analysis） の一環として行われます。
 ---
