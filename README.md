@@ -146,5 +146,5 @@ IBMのサーバーからレシピデータをダウンロードし、`pandas` �
 recipes = pd.read_csv("https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-DS0103EN-SkillsNetwork/labs/Module%202/recipes.csv")
 
 print("Data read into dataframe!")  # 読み込みには約30秒かかります
----
+```
 
