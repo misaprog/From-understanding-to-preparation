@@ -72,24 +72,13 @@ Python のプログラミング方法を理解している必要は **ありま�
 後半で **「Python for Data Science」** という完全な Python プログラミングコースを受講でき、  
 Python の使い方を学ぶことができます。
 
-## 必要なライブラリのインポート
-
-このラボでは以下の Python ライブラリを使用して、データの読み込みと処理を行います。
-
-```python
-import pandas as pd  # データ操作・解析ライブラリ
-pd.set_option('display.max_columns', None)  # 表示時にすべての列を表示
-
-import numpy as np  # 数値計算ライブラリ
-
-import re  # 正規表現による文字列処理ライブラリ
-
 ---
 
+## Pythonのバージョン確認（ローカル実行用）
 
-| ライブラリ    | 用途                         |
-| -------- | -------------------------- |
-| `pandas` | 表形式のデータ（DataFrame）の読み込み・操作 |
-| `numpy`  | 数値や配列の計算処理                 |
-| `re`     | 文字列に対するパターンマッチ（正規表現）処理     |
+以下のコマンドで、ローカルマシンにインストールされている Python のバージョンを確認できます。
 
+```python
+# Python のバージョンを表示する（Jupyter Notebook で使用可能）
+!python -V
+```
