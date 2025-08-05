@@ -129,3 +129,22 @@ numpy は数値計算を効率的に行うためのライブラリで、機械�
 re は、データの中の特定パターンを抽出・加工するための文字列操作ツールです。
 
 pd.set_option('display.max_columns', None) は、Notebook上で列が多いデータでもすべて表示できるようにする設定です。
+
+---
+
+## データの読み込み1
+
+IBMのサーバーからレシピデータをダウンロードし、`pandas` のデータフレームに読み込みます。  
+この処理によって、後の分析や前処理がしやすくなります。
+
+---
+## データの読み込み2
+
+クラウド環境（例：IBM Skills Network Labs や Google Colab）で実行する場合、以下のコードを使用して IBM のサーバーからレシピデータをダウンロードし、pandasのデータフレームに読み込みます。
+
+```python
+recipes = pd.read_csv("https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-DS0103EN-SkillsNetwork/labs/Module%202/recipes.csv")
+
+print("Data read into dataframe!")  # 読み込みには約30秒かかります
+---
+
