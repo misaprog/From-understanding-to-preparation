@@ -297,3 +297,58 @@ recipes.columns.values で、現在の列名（カラム名）の一覧を取得
 このように、重複や表記のブレを統一することで、モデルに正しい情報を渡しやすくなります。
 
 ---
+#### （５）レシピが 50 件未満の料理を削除します。
+
+#### 解説：
+value_counts()：cuisineごとのレシピ数をカウントします。
+
+cuisine_counts >= 50：50件以上の料理だけを残します。
+
+.index：条件を満たしたcuisine名（インデックス）だけを抽出。
+
+この変数 cuisines_to_keep を使って、次のフィルター処理（すでに記入済み）で不要な料理を取り除いています。
+
+---
+#### (6) 削除後の行数の変化を確認する
+```
+rows_before = recipes.shape[0]  # number of rows of original dataframe
+```
+recipes.shape[0] は、データフレームの行数を取得します。
+
+つまり、削除前の総レシピ数を rows_before に保存しています。
+```
+print("Number of rows of original dataframe is {}.".format(rows_before))
+```
+1行目で取得した行数を表示します。
+```
+recipes = recipes.loc[recipes['cuisine'].isin(cuisines_to_keep)]
+```
+recipes['cuisine'].isin(cuisines_to_keep) は、料理カテゴリが「50件以上あるもの」に該当する行だけを取り出すフィルターです。
+
+recipes.loc[...] でその行を抽出し、元の recipes に上書きしています。
+
+これで、少ないレシピ（50件未満）の料理は除外されました。
+```
+rows_after = recipes.shape[0]  # number of rows of processed dataframe
+```
+除外処理が終わった後の、**残った行数（レシピ数）**を取得しています
+```
+print("Number of rows of processed dataframe is {}.".format(rows_after))
+```
+フィルター後の行数を表示します。
+```
+print("{} rows removed!".format(rows_before - rows_after))
+```
+**削除された行数（レシピ数）**を表示します。
+
+元の行数 - 処理後の行数 を計算し、何件削除されたかを出力しています
+
+---
+#### 補足：どんな時に使うの？
+
+機械学習においては、極端に少ないデータは学習の妨げになります。
+
+このようにして、「十分な数がある料理カテゴリ」のみに絞り、偏りの少ない、バランスの取れたデータセットにしていきます。
+
+---
+
