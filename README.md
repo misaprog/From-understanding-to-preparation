@@ -501,7 +501,7 @@ print() で、並び替えてリセットされた ing_df を表示。
 つまり、中国人が一般的にどのような食材を使用しているか、そして例えばカナダ料理とはどのようなものかを調べてみましょう。
 
 ---
-解説
+#### 解説
 
 🔹 recipes.groupby("cuisine")
 
@@ -527,6 +527,74 @@ tofu の値が 0.10 → その料理に 10%のレシピで使われている
 
 最初の5行を表示します（確認用）。
 
+---
+
+上記のように、各行が料理、各列（最初の列を除く）が食材を表すデータフレームを作成しました。行の値は、対応する料理における各食材の割合を表しています。
+
+例：
+
+アーモンドは、アフリカ料理のレシピ全体の15.65%に含まれています。
+
+バターは、カナダ料理のレシピ全体の38.11%に含まれています。
+
+各料理の上位4つの食材を表示して、各料理のプロファイルを出力してみましょう。
+
+---
+### cuisines データフレーム（料理ジャンルごとの材料使用平均）から、各ジャンルで最もよく使われる材料トップ4を表示する。
+
+####  コード詳細解説
+```
+num_ingredients = 4
+```
+ 表示したい「上位の材料数」を指定。
+ 
+ ここでは **トップ4** の材料を表示するようにしています
+```
+def print_top_ingredients(row):
+```
+row には cuisines データフレームの 1行（＝1料理ジャンル） が渡されます。
+
+そのジャンルで使われている材料の使用率（0.0～1.0）が入っています。
+```
+print(row.name.upper())
+```
+行（料理ジャンル）の名前を **大文字で表示**。
+
+例: `"italian"` → `ITALIAN`
+```
+row_sorted = row.sort_values(ascending=False)*100
+```
+材料を 使用頻度の高い順にソート。
+
+* 100 でパーセント表記にします（例: 0.87 → 87.0）
+```
+top_ingredients = list(row_sorted.index.values)[0:num_ingredients]
+row_sorted = list(row_sorted)[0:num_ingredients]
+```
+トップ4の材料名（`index`）と、その使用率（`values`）を取得。
+```
+for ind, ingredient in enumerate(top_ingredients):
+        print("%s (%d%%)" % (ingredient, row_sorted[ind]), end=' ')
+    print("\n")
+```
+材料名と使用率を表示。
+
+例: garlic (87%) salt (79%) olive_oil (73%) tomato (69%)
+```
+create_cuisines_profiles = cuisines.apply(print_top_ingredients, axis=1)
+```
+cuisines` の各行（各料理ジャンル）に対して、先ほどの関数 `print_top_ingredients` を適用。
+
+ `axis=1` → 行方向に関数を適用。
 
 
+それぞれの料理ジャンルの**特徴的な材料**がすぐに把握できる。
 
+データの理解（EDA: Exploratory Data Analysis）の一環。
+
+このあとに使う分類モデルなどに役立つ知見を得るため
+
+---
+#### この時点で、データを十分に理解でき、データの準備が整って、モデリングに適した形式になっていると感じています。
+
+---
