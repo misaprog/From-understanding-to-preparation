@@ -366,7 +366,7 @@ print("{} rows removed!".format(rows_before - rows_after))
 いいえ。アジア料理や東アジア料理などの他のレシピにもこれらの材料が含まれているためです。
 
 ---
-### (8) すべてのレシピの材料を数えてみましょう
+#### (8) すべてのレシピの材料を数えてみましょう
 
 iloc[:, 1:] は すべての行（:）の2列目以降（1:） を取得
 
@@ -387,3 +387,58 @@ soy_sauce     8000
 dtype: int64
 ```
 ---
+#### (9) 材料（ingredient）とその使用回数（count）をもとに データフレーム ing_df を作る処理
+
+ 1. 材料名のシリーズを作る：
+```
+ ingredient = pd.Series(ing.index.values, index = np.arange(len(ing)))
+```  
+ing は .sum(axis=0) で計算された 材料ごとの合計使用回数 を持つ Series（pandasの1列のデータ）です。
+
+ing.index.values → 材料名の配列（例：["salt", "sugar", "water", ...]）
+
+np.arange(len(ing)) → インデックスとして [0, 1, 2, ...] を作る
+
+つまり、👉 材料名だけをSeriesとして取り出している、ということです。
+
+
+2. 使用回数のシリーズを作る：
+```
+count = pd.Series(list(ing), index = np.arange(len(ing)))
+```
+list(ing) → 材料の使用回数のリストに変換
+
+同じくインデックスは [0, 1, 2, ...]  👉 材料の使用回数をSeriesとして定義しています。
+
+
+3. データフレームを作る：
+```
+ing_df = pd.DataFrame(dict(ingredient = ingredient, count = count))
+```
+2つのSeriesを使って、ingredient と count という列を持つ DataFrame を作成。
+
+dict()で列名を指定しています。
+
+
+4. 列の順番を明示的に指定：
+```
+ing_df = ing_df[["ingredient", "count"]]
+```
+念のため、列の順番を ingredient → count に整えています。
+
+
+5. 全行を表示：
+```
+print(ing_df.to_string())
+```
+to_string() を使うと、Jupyter Notebook でも省略されずに すべての行が表示されます。
+
+| 処理内容         | 意味                      |
+| ------------ | ----------------------- |
+| `ingredient` | 材料名のリストをSeriesに変換       |
+| `count`      | 使用回数のリストをSeriesに変換      |
+| `ing_df`     | 材料と回数を持つ表（DataFrame）を作る |
+| `print()`    | 中身を全部表示                 |
+---
+
+
